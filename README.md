@@ -17,21 +17,20 @@ local FarmingSection = GeneralTab:CreateSection({
     })
 FarmingSection:AddToggle({
     Name = "Auto Farm",
-    Flag = "FarmingSection_EXPGrinder"
-    Callback = function()loadstring(game:HttpGet('https://raw.githubusercontent.com/Besty191/MAZI-API/main/Fake_Damage.lua'))()
-        FakeDamage(1000)
-        local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
-        local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
-        Camera:Stop()
-        coroutine.wrap(function()
-            game:GetService("RunService").Stepped:Connect(function()
-                if getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack then
-                    getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack = 1100
-                    getupvalues(CombatFramework)[2]['activeController'].hitboxMagnitude = 10
-                    getupvalues(CombatFramework)[2]['activeController']:attack()
-                end
-            end)
-        end)()
+    Flag = "FarmingSection_EXPGrinder"loadstring(game:HttpGet('https://raw.githubusercontent.com/Besty191/MAZI-API/main/Fake_Damage.lua'))()
+    FakeDamage(1000)
+    local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+    local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
+    Camera:Stop()
+    coroutine.wrap(function()
+        game:GetService("RunService").Stepped:Connect(function()
+            if getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack then
+                getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack = 1100
+                getupvalues(CombatFramework)[2]['activeController'].hitboxMagnitude = 10
+                getupvalues(CombatFramework)[2]['activeController']:attack()
+            end
+        end)
+    end)()
 })
 
 local GeneralTab = PepsisWorld:CreateTab({
